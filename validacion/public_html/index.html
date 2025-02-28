@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .f<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, button {
+            width: 100%;
+            padding: 8px;
+            font-size: 1rem;
+        }
+        .valid {
+            color: green;
+        }
+        .invalid {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Validaciones</h1>
+
+        <div class="form-group">
+            <label for="entero">Número Entero:</label>
+            <input type="text" id="entero">
+            <p id="entero-msg"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="real">Número Real:</label>
+            <input type="text" id="real">
+            <p id="real-msg"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="cientifico">Notación Científica:</label>
+            <input type="text" id="cientifico">
+            <p id="cientifico-msg"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo">
+            <p id="correo-msg"></p>
+        </div>
+
+        <button onclick="validar()">Validar</button>
+    </div>
+
+    <script>
+        const expEntero = /^-?\d+$/;
+        const expReal = /^-?\d*\.?\d+$/;
+        const expCientifica = /^-?\d+(\.\d+)?[eE][-+]?\d+$/;
+        const expCorreo = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+
+        function validar() {
+            validarCampo('entero', expEntero, 'Número entero válido', 'No es un número entero');
+            validarCampo('real', expReal, 'Número real válido', 'No es un número real');
+            validarCampo('cientifico', expCientifica, 'Notación científica válida', 'No es una notación científica válida');
+            validarCampo('correo', expCorreo, 'Correo válido', 'Correo inválido');
+        }
+
+        function validarCampo(id, expresion, mensajeValido, mensajeInvalido) {
+            const valor = document.getElementById(id).value;
+            const mensaje = document.getElementById(`${id}-msg`);
+            if (expresion.test(valor)) {
+                mensaje.textContent = mensajeValido;
+                mensaje.className = 'valid';
+            } else {
+                mensaje.textContent = mensajeInvalido;
+                mensaje.className = 'invalid';
+            }
+        }
+    </script>
+</body>
+</html>
